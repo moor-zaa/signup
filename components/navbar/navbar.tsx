@@ -1,3 +1,4 @@
+import LangSwitcher from "./lang-switcher";
 import ThemeToggle from "./theme-toggle";
 
 const Navbar = () => {
@@ -12,16 +13,7 @@ const Navbar = () => {
       <div className="flex items-center gap-4">
         <ThemeToggle />
 
-        <div className="flex items-center gap-2 scale-90">
-          <span className="text-xs text-(--text-secondary) font-bold">EN</span>
-          <div className="relative inline-block w-10 align-middle select-none">
-            <label
-              htmlFor="lang-toggle"
-              className="toggle-label block overflow-hidden h-5 rounded-full bg-gray-300 cursor-pointer"
-            ></label>
-          </div>
-          <span className="text-xs text-(--text-secondary) font-bold">FA</span>
-        </div>
+        <LangSwitcher />
       </div>
     </nav>
   );

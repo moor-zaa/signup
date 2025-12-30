@@ -27,15 +27,16 @@
 }
 
 body {
-  background-color: var(
-    --bg-secondary
-  ); /* Background is slightly gray in light mode */
+  background-color: var(--bg-secondary);
   color: var(--text-primary);
-  font-family: "Vazirmatn", sans-serif; /* Default to FA since html is rtl */
   transition: background-color 0.3s, color 0.3s;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+html[dir="rtl"] body {
+  font-family: "Vazirmatn", sans-serif;
 }
 
 html[dir="ltr"] body {
