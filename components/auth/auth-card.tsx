@@ -2,7 +2,6 @@
 
 import { useI18n } from "@/i18n/dictionary-provider";
 import ThirdPartyLogin from "./third-party-login";
-import { ArrowLeftIcon } from "@phosphor-icons/react";
 import AgreeTerms from "./agree-terms";
 import FormContainer from "./form-container";
 

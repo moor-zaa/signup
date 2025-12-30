@@ -34,7 +34,7 @@ export default async function RootLayout({
   const dict = await getDictionary(locale);
 
   return (
-    <html lang="en" data-theme="dark" dir="rtl">
+    <html lang="en" data-theme="dark" dir="ltr">
       <head>
         <ThemeScript />
       </head>
