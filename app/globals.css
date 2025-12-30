@@ -36,11 +36,11 @@ body {
 }
 
 html[dir="rtl"] body {
-  font-family: "Vazirmatn", sans-serif;
+  font-family: "Vazirmatn" !important;
 }
 
 html[dir="ltr"] body {
-  font-family: "Inter", sans-serif;
+  font-family: "Inter" !important;
 }
 
 button {

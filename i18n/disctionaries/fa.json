@@ -6,5 +6,15 @@
   "email": "ایمیل",
   "phone": "تلفن",
   "emailLabel": "آدرس ایمیل",
-  "phoneLabel": "شماره موبایل"
+  "phoneLabel": "شماره موبایل",
+  "continueWithGoogle": " ورود با گوگل",
+  "otherOptions": "سایر گزینه‌ها",
+  "orLoginWith": "یا ورود با",
+  "confirmationCode": "کد تایید",
+  "continueAsGuest": "ادامه به صورت مهمان",
+  "byContinueAgree": "با ادامه دادن، شما قوانین ما را می‌پذیرید:",
+  "termsOfServices": "شرایط استفاده",
+  "privacyPolicy": "حریم خصوصی",
+  "invalidCode": "کد نامعتبر است. مجدد تلاش کنید.",
+  "and": "و"
 }

@@ -6,5 +6,15 @@
   "email": "Email",
   "phone": "Phone",
   "emailLabel": "Email Address",
-  "phoneLabel": "Phone Number"
+  "phoneLabel": "Phone Number",
+  "continueWithGoogle": "Continue With Google",
+  "otherOptions": "Other options",
+  "orLoginWith": "Or login with",
+  "confirmationCode": "Confirmation Code",
+  "continueAsGuest": "Continue as guest",
+  "byContinueAgree": "By clicking continue, you agree to our",
+  "termsOfServices": "Terms of Service",
+  "privacyPolicy": "Privacy Policy",
+  "invalidCode": "Invalid code. Please try again.",
+  "and": "and"
 }

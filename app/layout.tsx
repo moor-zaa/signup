@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Vazirmatn, Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components";
 import ThemeScript from "./theme-script";
@@ -9,13 +9,13 @@ import { cookies } from "next/headers";
 import { Locale } from "@/i18n/config";
 import { I18nProvider } from "@/i18n/dictionary-provider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const vazir = Vazirmatn({
+  variable: "--font-vazir-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter-sans",
   subsets: ["latin"],
 });
 
@@ -41,7 +41,9 @@ export default async function RootLayout({
       <I18nProvider initialLocale={locale} initialDictionary={dict}>
         <ThemeProvider>
           <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+            className={`${
+              locale === "fa" ? vazir.variable : inter.variable
+            } antialiased`}
           >
             <Navbar />
 

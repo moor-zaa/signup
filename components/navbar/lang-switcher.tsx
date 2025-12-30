@@ -14,6 +14,7 @@ const LangSwitcher = () => {
           id="lang-toggle"
           checked={locale === "en"}
           onClick={() => setLocale(locale === "en" ? "fa" : "en")}
+          onChange={() => {}}
           className="toggle-checkbox absolute block w-5 h-5 rounded-full bg-(--bg-primary) border-2 border-(--border-color) appearance-none cursor-pointer transition-all duration-300"
         />
         <label
