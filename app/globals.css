@@ -1,26 +1,181 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Light Theme */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9f9f9;
+  --text-primary: #000000;
+  --text-secondary: #676767;
+  --border-color: #ececec;
+  --btn-bg: #000000;
+  --btn-text: #ffffff;
+  --input-bg: #ffffff;
+  --card-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+[data-theme="dark"] {
+  /* Dark Theme */
+  --bg-primary: #212121;
+  --bg-secondary: #171717;
+  --text-primary: #ffffff;
+  --text-secondary: #9b9b9b;
+  --border-color: #424242;
+  --btn-bg: #ffffff;
+  --btn-text: #000000;
+  --input-bg: #2f2f2f;
+  --card-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.3);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(
+    --bg-secondary
+  ); /* Background is slightly gray in light mode */
+  color: var(--text-primary);
+  font-family: "Vazirmatn", sans-serif; /* Default to FA since html is rtl */
+  transition: background-color 0.3s, color 0.3s;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+html[dir="ltr"] body {
+  font-family: "Inter", sans-serif;
+}
+
+button {
+  cursor: pointer !important;
+}
+
+/* --- Components --- */
+.auth-card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  box-shadow: var(--card-shadow);
+  width: 100%;
+  max-width: 440px;
+  padding: 40px;
+  transition: all 0.3s;
+}
+
+.btn-primary {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border-radius: 9999px;
+  padding: 12px 16px;
+  font-weight: 500;
+  width: 100%;
+  transition: opacity 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.btn-primary:hover {
+  opacity: 0.85;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 9999px;
+  padding: 10px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-outline:hover {
+  background-color: var(--bg-secondary);
+  border-color: var(--text-primary);
+}
+
+.input-field {
+  width: 100%;
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.input-field:focus {
+  border-color: var(--text-primary);
+}
+
+/* Toggle Segmented Control */
+.toggle-group {
+  background-color: var(--bg-secondary);
+  padding: 4px;
+  border-radius: 9999px;
+  display: inline-flex;
+  border: 1px solid var(--border-color);
+}
+.toggle-btn {
+  padding: 8px 24px;
+  border-radius: 9999px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+.toggle-btn.active {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  font-weight: 600;
+}
+
+/* Collapsible Sections */
+.expandable-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+.expandable-grid.open {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 12px;
+}
+
+.social-chip {
+  font-size: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 6px;
+  text-align: center;
+  cursor: pointer;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+.social-chip:hover {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+}
+
+/* OTP Animation */
+.otp-section {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+.otp-section.visible {
+  max-height: 120px;
+  opacity: 1;
+  margin-top: 16px;
+}
+
+/* Toggle Switch for Navbar */
+.toggle-checkbox:checked {
+  right: 0;
+  border-color: var(--text-primary);
+}
+.toggle-checkbox:checked + .toggle-label {
+  background-color: var(--text-primary);
 }
