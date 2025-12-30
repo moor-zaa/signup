@@ -1,36 +1,180 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Authentication App
 
-## Getting Started
+## ✨ Features
 
-First, run the development server:
+- 🔐 **Two-Step Authentication**: Email or phone number with OTP verification
+- 🌍 **Multi-Language Support**: English and Persian (Farsi) with RTL/LTR switching
+- 🎨 **Theme Support**: Light and dark mode toggle
+- 📱 **Responsive Design**: Mobile-first approach with Tailwind CSS
+- ♿ **Accessible**: ARIA labels and semantic HTML
+- 🎯 **Type-Safe**: Full TypeScript implementation
+- 🧩 **Component-Based**: Modular and reusable components
+- 🪝 **Custom Hooks**: Clean separation of logic and UI
 
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 20+ 
+- npm, yarn, or pnpm
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd signup
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+3. Run the development server:
 ```bash
 npm run dev
 # or
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+├── app/                      # Next.js App Router
+│   ├── layout.tsx           # Root layout with providers
+│   ├── page.tsx             # Home page
+│   ├── globals.css          # Global styles
+│   ├── theme-script.tsx     # Theme initialization script
+│   └── welcome/             # Welcome page route
+│
+├── components/              # React components
+│   ├── auth/               # Authentication components
+│   │   ├── form-container.tsx    # Main auth form
+│   │   ├── tab-toggle.tsx        # Email/Phone tab switcher
+│   │   ├── auth-card.tsx         # Auth wrapper card
+│   │   ├── agree-terms.tsx       # Terms agreement
+│   │   ├── third-party-login.tsx # Social login options
+│   │   └── auth.types.ts         # Type definitions
+│   │
+│   ├── navbar/             # Navigation components
+│   │   ├── navbar.tsx           # Main navigation bar
+│   │   ├── lang-switcher.tsx    # Language switcher
+│   │   └── theme-toggle.tsx     # Theme toggle button
+│   │
+│   └── welcome/            # Welcome page components
+│
+├── hooks/                   # Custom React hooks
+│   └── useSignin.hook.ts   # Authentication logic hook
+│
+├── i18n/                    # Internationalization
+│   ├── config.ts           # i18n configuration
+│   ├── dictionary-provider.tsx  # Dictionary context
+│   ├── get-dictionary.ts   # Dictionary loader
+│   ├── types.ts            # i18n type definitions
+│   └── dictionaries/       # Translation files
+│       ├── en.json         # English translations
+│       └── fa.json         # Persian translations
+│
+├── theme/                   # Theme management
+│   ├── theme-provider.tsx  # Theme context provider
+│   ├── theme.type.ts       # Theme type definitions
+│   └── useTheme.hook.ts    # Theme hook
+│
+└── ui/                      # Reusable UI components
+    ├── inputs/
+    │   ├── credential-input.tsx  # Email/Phone input
+    │   └── otp-input.tsx         # OTP code input
+    └── message/
+        └── error-message.tsx     # Error display component
+```
 
-## Learn More
+## 🎯 Key Features
 
-To learn more about Next.js, take a look at the following resources:
+### Internationalization (i18n)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Automatic language detection from cookies
+- Full RTL support for Persian (Farsi)
+- Language switching without page reload
+- Direction-aware icons and layouts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Theme System
 
-## Deploy on Vercel
+- Persistent theme preference (stored in localStorage)
+- Smooth theme transitions
+- Custom CSS variables for consistent styling
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛠️ Built With
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **[Next.js 16](https://nextjs.org/)** - React framework with App Router
+- **[React 19](https://react.dev/)** - UI library
+- **[TypeScript 5](https://www.typescriptlang.org/)** - Type safety
+- **[Tailwind CSS 4](https://tailwindcss.com/)** - Utility-first CSS
+- **[Phosphor Icons](https://phosphoricons.com/)** - Icon library
+
+## 📝 Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm start` - Start production server
+- `npm run lint` - Run ESLint
+
+## 🌐 Adding New Languages
+
+1. Create a new dictionary file in `i18n/dictionaries/`:
+```json
+// i18n/dictionaries/es.json
+{
+  "email": "Correo electrónico",
+  "phone": "Teléfono",
+  // ... more translations
+}
+```
+
+2. Update the locale configuration in `i18n/config.ts`:
+```typescript
+export const locales = ["en", "fa", "es"] as const;
+
+export const localeConfig = {
+  en: { dir: "ltr", name: "English" },
+  fa: { dir: "rtl", name: "فارسی" },
+  es: { dir: "ltr", name: "Español" },
+} as const;
+```
+
+3. Update the dictionary loader in `i18n/get-dictionary.ts`:
+```typescript
+const dictionaries = {
+  en: () => import("./dictionaries/en.json").then((m) => m.default),
+  fa: () => import("./dictionaries/fa.json").then((m) => m.default),
+  es: () => import("./dictionaries/es.json").then((m) => m.default),
+};
+```
+
+## 🎨 Customization
+
+### Theme Colors
+
+Edit CSS variables in `app/globals.css`:
+
+```css
+:root {
+  --bg-primary: #ffffff;
+  --text-primary: #1a1a1a;
+  /* ... more variables */
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0a0a0a;
+  --text-primary: #ffffff;
+  /* ... more variables */
+}
+```
